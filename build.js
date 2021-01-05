@@ -2,6 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const pretty = require("pretty");
 const { execSync } = require("child_process");
+const cheerio = require("cheerio");
 
 // Writing > Settings > Property | Data Streams > Web
 // https://analytics.google.com/analytics/web/?authuser=0#/p257723659/reports/defaulthome
@@ -66,6 +67,17 @@ const assetPath = assetsDir.replace(/ /g, "%20");
 
 // Rename assets directory.
 htmlContents = htmlContents.split(assetPath).join("assets");
+
+const $ = cheerio.load(htmlContents);
+
+// Remove the links that wrap around images.
+const images = $("figure > a > img");
+for (const img of images) {
+  console.log(img);
+  $(img.parent).replaceWith(img);
+}
+
+htmlContents = pretty($.html());
 
 fs.writeFileSync(
   path.join(__dirname, "index.html"),
