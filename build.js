@@ -60,8 +60,12 @@ htmlContents = htmlContents.split("max-width: 900px;").join(`max-width: 46em;`);
 // Toggles default closed
 htmlContents = htmlContents.split(' open=""').join("");
 
+// Should use encodeURIComponent but it messes up with commas in the title.
+// const assetPath = encodeURIComponent(assetsDir)
+const assetPath = assetsDir.replace(/ /g, "%20");
+
 // Rename assets directory.
-htmlContents = htmlContents.split(encodeURIComponent(assetsDir)).join("assets");
+htmlContents = htmlContents.split(assetPath).join("assets");
 
 fs.writeFileSync(
   path.join(__dirname, "index.html"),
