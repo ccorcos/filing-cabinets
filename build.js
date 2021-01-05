@@ -1,6 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const pretty = require("pretty");
+const { execSync } = require("child_process");
 
 // Writing > Settings > Property | Data Streams > Web
 // https://analytics.google.com/analytics/web/?authuser=0#/p257723659/reports/defaulthome
@@ -79,3 +80,5 @@ function flatten(str) {
     .join("\n")
     .trim();
 }
+
+execSync("open index.html");
