@@ -2,7 +2,18 @@ const fs = require("fs-extra");
 const path = require("path");
 const pretty = require("pretty");
 
-// https://www.notion.so/Notion-to-Static-HTML-Demo-07c2507058234b17a534fbd07c52bf1b
+// Writing > Settings > Property | Data Streams > Web
+// https://analytics.google.com/analytics/web/?authuser=0#/p257723659/reports/defaulthome
+const googleAnalytics = `
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8Y16M146T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8Y16M146T');
+</script>
+`;
 
 const files = fs.readdirSync(__dirname);
 const exportDirName = files.find((file) => file.startsWith("Export"));
@@ -18,8 +29,13 @@ htmlContents = pretty(htmlContents);
 htmlContents = flatten(htmlContents);
 
 htmlContents = htmlContents.replace(
-  "<head><meta",
-  `<head><meta name="viewport" content="width=device-width, initial-scale=1"><meta`
+  "<head>\n<meta",
+  `<head>\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta`
+);
+
+htmlContents = htmlContents.replace(
+  "<head>\n<meta",
+  `<head>\n${googleAnalytics}\n<meta`
 );
 
 // Remove CSS.
