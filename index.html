@@ -16,14 +16,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Filing Cabinets, Information Architecture, and End-user Databases</title>
+    <title>A More Human Approach To Databases</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <article id="11a30b1e-c550-4fc7-bfc2-6dba8e6d39bd" class="page sans">
       <header>
-        <h1 class="page-title">Filing Cabinets, Information Architecture, and End-user Databases</h1>
+        <h1 class="page-title">A More Human Approach To Databases</h1>
       </header>
       <div class="page-body">
         <hr id="5022b494-4d62-4cdb-949e-71cde6598179">
@@ -41,17 +41,15 @@
         </div>
         <hr id="70bf0a0b-e2be-4205-ab11-7380136e2a36">
         <h1 id="3751badc-7cef-477e-abd3-53ef25ed81cd" class="">Motivation</h1>
-        <p id="34b58c16-b6bc-4432-a7f8-39537303b9d7" class="">End-user databases are all the buzz lately — Notion, Airtable, Coda, Roam, etc. These products are succeeding where others haven't because they make it easy for users to model information in a way that feels intuitive.</p>
-        <p id="04a5449a-0395-49dc-b43d-4c2c07f34693" class="">I love building products like Notion, but it's really hard for two reasons:</p>
-        <ol id="e85f8d33-05ab-4428-adff-591f1674db2f" class="numbered-list" start="1">
-          <li>Not everyone is a programmer, and understanding how to organize and automate your life using tools like this requires some amount of technical literacy about databases and information architecture.</li>
+        <p id="6595f0c7-f94b-4772-8c12-22b107c82c47" class="">End-user databases are all the buzz these days — Notion, Airtable, Coda, Roam, etc. These products have made it possible for people to model information in a way that feels more natural and intuitive to the way we experience it in our daily lives.</p>
+        <p id="69014b56-b04f-4baf-be70-2c0ba0ad30e9" class="">I love building products like Notion, but building these kinds of products is hard. For two reasons:</p>
+        <ol id="3c07bc59-4c8a-4b48-bdb0-1bf930336c2e" class="numbered-list" start="1">
+          <li>Most people don't have the technical literacy about databases and information architecture to actually automate and organize their lives with these tools.</li>
         </ol>
-        <ol id="b87fe916-8d6f-4f14-9750-5cd4bb64eb50" class="numbered-list" start="2">
-          <li>Existing databases aren't well-suited for dynamic user-generated filters and sorts.</li>
+        <ol id="d5625fcf-2e32-45ce-acc4-d73e1d38d037" class="numbered-list" start="2">
+          <li>The databases we have today aren't well-suited for dynamic user-generated filters and sorts.</li>
         </ol>
-        <p id="9327deb7-9248-4767-9b2d-e0edfaf924a7" class="">
-        </p>
-        <p id="aa0edb68-c072-4214-acf9-8e6e243900dd" class="">This second challenge is more technical and I will hide all these programmer-related details behind a toggle so you don't have to read them if you'd like.</p>
+        <p id="aa0edb68-c072-4214-acf9-8e6e243900dd" class="">This second challenge is more technical and I will hide all of these programmer-related details behind a toggle so you don't have to read them if you'd like.</p>
         <ul id="33a92bec-cc3c-4881-9fda-d91198d3ffee" class="toggle">
           <li>
             <details>
@@ -67,16 +65,12 @@
             </details>
           </li>
         </ul>
-        <p id="f0b2e274-5773-4cee-a05a-d4501ecb77df" class="">
+        <p id="bde1472f-3ccb-4e36-a603-fb95fd541ff3" class="">
         </p>
-        <p id="3c5e006e-d8be-4a15-943a-3d2847ab9902" class="">To overcome these challenges, it's important to gain a first-principles intuition for what databases actually are and how they work. </p>
-        <p id="45f0e08c-4fd4-4bd4-8a16-aabc6468b7ab" class="">
-        </p>
-        <p id="60141cc8-49de-48c5-bba4-34fd8b913b81" class="">In this article, we are going to learn about what is database is as a more abstract concept. We will gain a deeper appreciation for sorting and how databases leverage sorting to lookup information quickly.</p>
-        <p id="c38b7a84-56ce-485d-943f-307bfb5789d6" class="">With this foundational understanding, we will dive into a real-world example that uses police station filing cabinets to teach important concepts of information architecture and how to manage information. And for the technical folks, we will explore how this metaphor translates to existing database technologies and the challenges it presents.</p>
-        <p id="c729b494-1877-4bff-abc7-3902a5316218" class="">By the end of this article, I hope to convince you that these information architecture concepts are understandable for non-technical users and that software based on these concepts will be immensely powerful for end-users.</p>
-        <p id="e2829130-7085-4fef-8f86-331e7ce1738d" class="">By the end of this article, I hope to convince you that software based on these concepts will be technically superior for end-user database applications.</p>
-        <p id="361ba5cf-9b88-40ad-95d5-dba186c5c615" class="">If I have convinced you that software based on these concepts will be technically superior for end-user database applications and inspired you to act upon this new conviction, please don't hesitate to reach out. I'm in the early stages of building a database based on these principles and warmly welcome collaborators! </p>
+        <p id="f41a9378-fc1b-4ea2-a13a-cb918178cff3" class="">I plan to address this first reason by giving you a mental model of what databases are and a first-principles understanding of how they work.</p>
+        <p id="1d0ea7ea-6760-43cc-a728-4b3a1d7efe3b" class="">I'll introduce databases as an abstract concept and then we'll work through a real-world example to explore how databases leverage sorting and filters to lookup information quickly.</p>
+        <p id="088e64ab-1cbd-49c2-85e5-ac16a93efcfa" class="">By the end, I hope to show you how these information architecture concepts are immensely powerful and totally approachable for non-technical people. </p>
+        <p id="69cf1cd2-0e55-4a55-8d70-a407a8cba1e3" class="">Lastly, I want to convince you that software based on these concepts will be far superior to anything we use today for end-user database applications. If these concepts are interesting to you, <a target="_blank" href="mailto:ccorcos@gmail.com">please reach out</a>! I love sharing ideas. 😁</p>
         <h1 id="06998e18-a3dc-43fa-9f07-4d6e81c66d75" class="">What is a database?</h1>
         <p id="a546e1c2-8a2d-4d3a-8d6b-0e74b0f867f0" class="block-color-gray">Databases are filing cabinets.</p>
         <p id="437c4e5d-072f-4e2c-a690-f23c26fa06f4" class="">Databases don't have to be so complicated. If you strip away all the fancy semantics, you end up with something simple and familiar.</p>
@@ -99,21 +93,18 @@
             <figure id="440d81f2-8412-4ff1-94b2-59ba11a16d9c" class="image"><img style="width:414px" src="assets/Filing_cabinets_34.png">
               <figcaption>Filing Cabinet</figcaption>
             </figure>
+            <p id="ff406df9-ffe0-4511-9834-6af64bb4de05" class="">
+            </p>
           </div>
         </div>
         <p id="2f5bbfdf-b821-42d1-9376-6b5cbb7a0280" class="">
         </p>
-        <p id="aef2d2df-d75a-43cf-a023-943585a6f450" class="">Dictionaries, calendars, and filing cabinets are particularly useful because they represent information in a sorted order, making it possible for us to retrieve information quickly using a process called <a target="_blank" href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>. </p>
+        <p id="aef2d2df-d75a-43cf-a023-943585a6f450" class="">Dictionaries, calendars, and filing cabinets are particularly useful because they represent information in a sorted order, making it possible for us to retrieve information quickly and efficiently using a process called <a target="_blank" href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>. Databases are no different, they're also containers of sorted information.</p>
         <p id="4b7fa946-b21d-464d-acdd-b57ba413436e" class="">
         </p>
         <figure id="5d980e68-82d2-4fa5-b66c-43ad2de59b5c" class="image"><img style="width:240px" src="assets/Filing_cabinets_4.png">
           <figcaption>Binary search</figcaption>
         </figure>
-        <p id="0a728c35-4976-428b-8f1f-b40f324406cf" class="">
-        </p>
-        <p id="282cce38-538b-4495-bacd-e3563c827b91" class="">Databases are just containers of sorted information, no different from a filing cabinets. </p>
-        <p id="406862ad-d34a-4fa9-b3bb-215d3a0b2fd8" class="">
-        </p>
         <p id="6e586a48-e28e-45ed-8622-b123875fab49" class="">
         </p>
         <h2 id="b5562604-4d38-4feb-84bd-6f536aea58cc" class="">What is sorted information?</h2>
@@ -165,7 +156,7 @@ August 26, 2020
 10
 11
 12</code></pre>
-        <p id="becf436f-03a3-4bad-a0f7-519f75156d75" class="">And in fact, we can represent dates in a way that can be sorted alphabetically using <a target="_blank" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>.</p><pre id="6c4b1b11-3f63-4789-b0d5-4e0145fc9750" class="code"><code>2019-01-10
+        <p id="becf436f-03a3-4bad-a0f7-519f75156d75" class="">And in fact, we can represent dates in a way that can be sorted alphabetically using <a target="_blank" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>. </p><pre id="6c4b1b11-3f63-4789-b0d5-4e0145fc9750" class="code"><code>2019-01-10
 ...
 2019-12-28
 ...
@@ -173,8 +164,8 @@ August 26, 2020
 ...</code></pre>
         <p id="8a18cfcf-db12-4ac6-8f4c-4d07dbf7b62b" class="">
         </p>
-        <p id="82017443-040f-4acf-9810-23cd870f9c5e" class="">Representing dates this way is convenient because it doesn't require domain knowledge to understand how to sort them. There are endless types of things that can be sorted arbitrarily such as a deck of cards or the status of a project.</p>
-        <p id="7ddb731a-5ae6-4745-8134-9dc166ec26f4" class="">In general, lexicographical encodings are important because they allow databases to store arbitrary information in the correct order without needing additional knowledge about the type of information it is sorting.</p>
+        <p id="82017443-040f-4acf-9810-23cd870f9c5e" class="">Representing dates this way is convenient because it doesn't require domain knowledge to understand how to sort them. There are an infinite number of things that can be sorted arbitrarily: a deck of cards, the status of a project, your rock collection—they are all just different types of things.</p>
+        <p id="7ddb731a-5ae6-4745-8134-9dc166ec26f4" class="">In general, lexicographical encodings are important because they allow databases to store arbitrary information in the correct order without needing additional knowledge about the type of information that is being sorted.</p>
         <p id="f7acb05d-9745-4184-b9bc-13acd25680d0" class="">
         </p>
         <ul id="9983c3de-f661-4eb5-82a0-54f7af61c590" class="toggle">
@@ -194,14 +185,14 @@ August 26, 2020
         <p id="e0f0bb9b-fa2a-4b90-9201-a13005754346" class="">You can think of databases much in the same way you think of system filing cabinets. To explore this analogy further, let's imagine that you are in charge of administering a police department where you keep track of a variety of information about every police officer in your region — name, badge number, address, and precinct, among other details.</p>
         <p id="52846dac-2800-4ee6-893f-277f377ad840" class="">
         </p>
-        <p id="60068181-62be-45e4-979e-b7a04b4d0ed9" class="">As the administrator of this information, you're responsible to make sure that everything is up to date and easily accessible.</p>
+        <p id="60068181-62be-45e4-979e-b7a04b4d0ed9" class="">As the administrator of this information, you're responsible for making sure that everything is up to date and easily accessible.</p>
         <p id="b447ec53-c3e3-47ef-9c94-7993239cd229" class="">
         </p>
         <p id="244c9ed1-6e90-4a3b-a370-59fa67d0cd5f" class="">To keep things simple, you start by keeping all officer information in a filing cabinet sorted by badge number. This makes it easy to retrieve information about any officer based on their badge number, for example when an officer gets promoted or moves to a new address.</p>
         <p id="b9c39bf4-e69e-4710-a3c2-57496e1f5396" class="">
         </p>
         <figure id="7b5ff822-3bb7-4db6-b9a1-3872565c69bb" class="image"><img style="width:288px" src="assets/Filing_cabinets_8.png">
-          <figcaption>An officer's file</figcaption>
+          <figcaption>An officer's file in the <em>Badge #</em> cabinet.</figcaption>
         </figure>
         <p id="489257bb-fe75-4bb2-8797-c088256279e4" class="">
         </p>
@@ -212,48 +203,48 @@ August 26, 2020
         <p id="9fb77909-54eb-4ecb-9059-10642f19e8f1" class="">Maybe this is just a one-time request so you can labor over it and be done with it, but the police chief says that every month he wants to mail a bonus check to every officer in the precinct with the most arrests. If you're going to have to do this every month, maybe it's worthwhile to make this job a bit faster.</p>
         <p id="6151fc61-5448-4732-a43c-6e3961b146ac" class="">
         </p>
-        <p id="da5b845b-2a98-48f0-a688-857dd844a990" class="">To solve this problem, you create another filing cabinet where you sort all officers by precinct. To keep things simple, you photocopy all of the information in the Badge # cabinet over to the Precinct cabinet. Now when the chief asks you to get the address of every officer in a precinct, you can use this new filing cabinet to quickly retrieve the information.</p>
+        <p id="da5b845b-2a98-48f0-a688-857dd844a990" class="">To solve this problem, you create another filing cabinet where you sort all officers by precinct. To keep things simple, you photocopy all of the information in the <em>Badge #</em> cabinet over to the <em>Precinct</em> cabinet. Now when the chief asks you to get the address of every officer in a precinct, you can use this new filing cabinet to quickly retrieve the information.</p>
         <p id="484fc57d-3e3f-480f-96eb-3a437a385c83" class="">This new filing cabinet makes it easier for you to get information, but you've created a new problem every time you have to update the information. If a new officer joins a precinct or an office moves from one precinct to another, you now have to make sure the information is correct and updated in two different places.</p>
         <p id="29d77e1d-505f-4e7b-b6fd-fd13c3a2faf5" class="">
         </p>
         <figure id="51d2bd9f-be47-423b-8466-b384ab588ebe" class="image"><img style="width:528px" src="assets/Filing_cabinets_9.png">
-          <figcaption>Updating the address Badge # cabinet as well as the Precinct cabinet.</figcaption>
+          <figcaption>Updating the address <em>Badge #</em> cabinet as well as the <em>Precinct</em> cabinet.</figcaption>
         </figure>
         <p id="b8e4ed8a-b59a-4ee5-a695-cbc525dc38b8" class="">
         </p>
-        <p id="6657ec65-af78-48b7-a19c-807269e42b1f" class="">Making things worse, we end up wasting time keeping unnecessary information up to date. For example, maybe we don't need the date of birth or a photo of the officer in the new precinct filing cabinet we made, but we copy it over anyway so the information doesn't get out of sync.</p>
+        <p id="6657ec65-af78-48b7-a19c-807269e42b1f" class="">Making things worse, we end up wasting time keeping unnecessary information up to date. For example, maybe we don't need the date of birth or a photo of the officer in the new <em>Precinct</em> filing cabinet we made, but we copy it over anyway so the information doesn't get out of sync.</p>
         <p id="315f0606-dd54-44e0-b355-836e19570436" class="">
         </p>
         <figure id="334824fe-43ca-4fb6-a9a0-002cba87f78b" class="image"><img style="width:528px" src="assets/Filing_cabinets_11.png">
-          <figcaption>Updating the name and photo in Badge # cabinet as well as the Precinct cabinet.</figcaption>
+          <figcaption>Updating the name and photo in <em>Badge #</em> cabinet as well as the <em>Precinct</em> cabinet.</figcaption>
         </figure>
         <p id="9fb99c18-cc0c-40e5-8f3d-f82db7855abb" class="">
         </p>
-        <p id="d40e75d1-a726-4543-9029-4098c404910c" class="">On the other hand, maybe we decide that the only information we store in the Precinct cabinet is the badge number. This makes changing and managing information about the officers require much less work — we only need to update it in the original Badge # cabinet. It also means that the Precinct cabinet is much smaller because we don't have as much information crammed in there. </p>
-        <p id="079cd311-9a18-4f93-888e-3a1f91ef2843" class="">But there's a catch. Now if you need to get the address for every officer in a precinct, you'll have to first use the new filing cabinet you made to get the list of officers in the precinct and then you'll have to use the original Badge # filing cabinet to get the address for each officer. This is still quicker than not having a Precinct cabinet, but not as fast as the previous approach for scanning through every officer's file.</p>
+        <p id="d40e75d1-a726-4543-9029-4098c404910c" class="">On the other hand, maybe we decide that the only information we store in the <em>Precinct</em> cabinet is the badge number. This makes changing and managing information about the officers require much less work — we only need to update it in the original <em>Badge #</em> cabinet. It also means that the <em>Precinct</em> cabinet is much smaller because we don't have as much information crammed in there. </p>
+        <p id="079cd311-9a18-4f93-888e-3a1f91ef2843" class="">But there's a catch. Now if you need to get the address for every officer in a precinct, you'll have to first use the new filing cabinet you made to get the list of officers in the precinct and then you'll have to use the original <em>Badge #</em> filing cabinet to get the address for each officer. This is still quicker than not having a <em>Precinct</em> cabinet, but not as fast as the previous approach for scanning through every officer's file.</p>
         <p id="b1bdf058-e8b1-4c97-b874-9808b42d3354" class="">
         </p>
         <figure id="9857ca70-3f5e-4907-af02-ec1030fb0b3d" class="image"><img style="width:528px" src="assets/Filing_cabinets_12.png">
-          <figcaption>Lookup each badge number from the Precinct cabinet in the Badge # cabinet.</figcaption>
+          <figcaption>Lookup each badge number from the <em>Precinct</em> cabinet in the <em>Badge #</em> cabinet.</figcaption>
         </figure>
         <p id="c3ef53a8-1d09-4ada-944d-28d522e91168" class="">
         </p>
         <p id="40860ff9-4b13-4ad9-870a-b598a22a503b" class="">Fundamentally, there is no "best" way to do this — it's all a trade-off between how much work you want to do when reading vs writing information.</p>
         <p id="e265a347-ac39-49e1-b2f3-14cfe12342e1" class="">
         </p>
-        <p id="7e567708-af2d-4a48-92fe-2016883eefc6" class="">There is a middle ground between these two approaches where we record both the address and the badge number in the new Precinct filing cabinet we created. This strikes a nice balance where we don't have to update information that we don't care about in the Precinct cabinet.</p>
+        <p id="7e567708-af2d-4a48-92fe-2016883eefc6" class="">There is a middle ground between these two approaches where we record both the address and the badge number in the new <em>Precinct</em> filing cabinet we created. This strikes a nice balance where we don't have to update information that we don't care about in the <em>Precinct</em> cabinet.</p>
         <p id="3198ef5a-42a7-4b66-b688-25122177a995" class="">
         </p>
         <figure id="ff8c340f-f8b1-4153-beb6-f1ce3c4f8483" class="image"><img style="width:528px" src="assets/Filing_cabinets_35.png">
-          <figcaption>Updating only the address in the Precinct cabinet.</figcaption>
+          <figcaption>Updating only the address in the <em>Precinct</em> cabinet.</figcaption>
         </figure>
         <p id="b59b5cfd-36a9-42c2-8b95-ccca9ee58c5d" class="">
         </p>
-        <p id="4ada80fd-f860-4762-89be-210d13869f35" class="">However, this does come with some logistical overhead — now we have created a list of procedures to follow when updating the Badge # cabinet:</p>
+        <p id="4ada80fd-f860-4762-89be-210d13869f35" class="">However, this does come with some logistical overhead — now we have a list of procedures we have to follow when updating the <em>Badge #</em> cabinet:</p>
         <p id="3cc9774c-2588-4dc1-bcbc-da8aa810df78" class="">
         </p>
         <figure id="b5793ec9-6f93-4813-97e2-5dc5e651e2bc" class="image"><img style="width:336px" src="assets/Filing_cabinets_16.png">
-          <figcaption>Procedures to follow when updating the Badge # cabinet.</figcaption>
+          <figcaption>Procedures to follow when updating the <em>Badge #</em> cabinet.</figcaption>
         </figure>
         <p id="deddf17d-f158-4fa5-8cc3-d3cbe2499267" class="">
         </p>
@@ -261,7 +252,7 @@ August 26, 2020
           <li>
             <details>
               <summary>🤖 Technical Details</summary>
-              <p id="a0e3039f-6b44-45a2-9169-0d4f6ea17f7a" class="">There is a direct analogy here with SQL. The Badge # cabinet is the officers table with the badge number as a primary key. The Precinct cabinet is an index on the officers table.</p>
+              <p id="a0e3039f-6b44-45a2-9169-0d4f6ea17f7a" class="">There is a direct analogy here with SQL. The <em>Badge #</em> cabinet is the officers table with the badge number as a primary key. The <em>Precinct</em> cabinet is an index on the officers table.</p>
               <p id="7db4b101-5eaa-49c1-af31-751663a754e7" class="">And the procedures list is just the list of SQL indexes on the officers table defined by the database schema that internally needs to be updated whenever an officer is updated.</p>
               <p id="bbe3613b-8c6c-4546-b88f-c0457989dcd7" class="">This procedures list will also include SQL triggers on the officers table. While SQL does not let you create indexes on information joined across tables, you can effectively achieve this with triggers.</p>
             </details>
@@ -276,7 +267,7 @@ August 26, 2020
         <p id="aa19fe50-f8f8-499e-9510-4863e5b197e2" class="">
         </p>
         <figure id="18a5a463-362e-4c09-ae01-d975a94b7f6e" class="image"><img style="width:432px" src="assets/Filing_cabinets_17.png">
-          <figcaption>Three filing cabinets: Badge #, Precinct, and Name along with the procedure list for keeping everything up to date.</figcaption>
+          <figcaption>Three filing cabinets: <em>Badge #</em>, <em>Precinct</em>, and <em>Name</em> along with the procedure list for keeping everything up to date.</figcaption>
         </figure>
         <p id="f48efb63-1290-440a-8d87-397686572bd0" class="">
         </p>
@@ -297,13 +288,13 @@ August 26, 2020
         </ul>
         <p id="3edff0cc-a3ec-45dc-9bde-4d653f597480" class="">
         </p>
-        <p id="803abd00-a1cf-4a8e-b950-8006c554636e" class="">So you look into the Name cabinet that you created and end up finding out that there are actually hundreds of officers named Smith in the 121st precinct. Once again, you decide it's worth figuring out a faster way to do this.</p>
-        <p id="d8a45ce0-ec8c-4b17-8227-9645f2a8cf2d" class="">What you want is something like the Precinct cabinet that you created with a secondary sort by officer name. But the Precinct cabinet doesn't include officer names, so you would have to create a new filing cabinet to include them. You decide it's probably more efficient to just copy the officer names over to your existing Precinct cabinet and sort by name to save some space.</p>
+        <p id="803abd00-a1cf-4a8e-b950-8006c554636e" class="">So you look into the <em>Name</em> cabinet that you created and end up finding out that there are actually hundreds of officers named Smith in the 121st precinct. Once again, you decide it's worth figuring out a faster way to do this.</p>
+        <p id="d8a45ce0-ec8c-4b17-8227-9645f2a8cf2d" class="">What you want is something like the <em>Precinct</em> cabinet that you created with a secondary sort by officer name. But the <em>Precinct</em> cabinet doesn't include officer names, so you would have to create a new filing cabinet to include them. You decide it's probably more efficient to just copy the officer names over to your existing <em>Precinct</em> cabinet and sort by name to save some space.</p>
         <p id="e1aa2b6f-1f20-482d-8c2c-1add52bd1d33" class="">As we discussed earlier, this is a compound sort since we're sorting on more than one property: precinct, then name. </p>
         <p id="7c53fc66-5f22-4d8b-bfab-6b055d8495bc" class="">
         </p>
         <figure id="747f50e5-8bee-43c4-a650-feb53247858e" class="image"><img style="width:432px" src="assets/Filing_cabinets_19.png">
-          <figcaption>Modifications to the procedure list and the Precinct cabinet to accommodate for a secondary sort on name.</figcaption>
+          <figcaption>Modifications to the procedure list and the <em>Precinct</em> cabinet to accommodate for a secondary sort on name.</figcaption>
         </figure>
         <p id="3ec35d9c-d62e-459e-a989-f2f013a2ab31" class="">
         </p>
@@ -318,11 +309,11 @@ August 26, 2020
         </figure>
         <p id="a7c9e215-40a0-4023-9245-b019357353af" class="">
         </p>
-        <p id="8c0704f5-3c64-45e7-ac73-e8c2fa76c23d" class="">Every time we make a change to the Badge # cabinet, we now need to scan through this huge list of procedures and it takes too much time. So what we do is quite simple, we move all of the auditor addresses into a new filing cabinet and add a step to our list of procedures that tells the clerk where to lookup the auditor's address.</p>
+        <p id="8c0704f5-3c64-45e7-ac73-e8c2fa76c23d" class="">Every time we make a change to the <em>Badge #</em> cabinet, we now need to scan through this huge list of procedures and it takes too much time. So what we do is quite simple, we move all of the auditor addresses into a new filing cabinet and add a step to our list of procedures that tells the clerk where to lookup the auditor's address.</p>
         <p id="2534ca4a-8111-4e28-94bf-3bf089389c86" class="">
         </p>
         <figure id="cf696d24-36ca-4362-91b7-4096853a10a6" class="image"><img style="width:528px" src="assets/Filing_cabinets_24.png">
-          <figcaption>A filing cabinet called Precinct Auditors with the addresses of each auditor and a single procedure to lookup the appropriate address.</figcaption>
+          <figcaption>A filing cabinet called <em>Precinct Auditors</em> with the addresses of each auditor and a single procedure to lookup the appropriate address.</figcaption>
         </figure>
         <p id="17ba4474-57bd-48ad-a6b1-795c099344f7" class="">
         </p>
@@ -334,7 +325,7 @@ August 26, 2020
         </figure>
         <p id="9a8f908f-8012-473a-9ba0-54be3a86f40a" class="">
         </p>
-        <p id="5b212bea-f6d4-45c0-8ef7-31d468b25d56" class="">Hopefully it's not too hard to see that this procedure list itself can be turned into a filing cabinet sorted by property. That way, we don't need to read through every procedure for every property when we're just updating an address. Therefore, whenever we make a change to the Badge # cabinet, we lookup every property that changed in this Procedures cabinet to see what we need to do.</p>
+        <p id="5b212bea-f6d4-45c0-8ef7-31d468b25d56" class="">Hopefully it's not too hard to see that this procedure list itself can be turned into a filing cabinet sorted by property. That way, we don't need to read through every procedure for every property when we're just updating an address. Therefore, whenever we make a change to the <em>Badge #</em> cabinet, we lookup every property that changed in this <em>Procedures</em> cabinet to see what we need to do.</p>
         <p id="244dbd0b-160a-4957-b87c-56a70e943ed8" class="">
         </p>
         <figure id="2d7c0f23-8a43-41c2-bb87-e1a0737d3b01" class="image"><img style="width:336px" src="assets/Filing_cabinets_26.png">
@@ -354,9 +345,9 @@ August 26, 2020
         </ul>
         <p id="8f205f55-cae7-4eb1-80cb-38f15aaf8391" class="">
         </p>
-        <p id="df9d3bee-a642-4173-acd1-3d82ff3a8bd8" class="">So far, we've only maintained a list of procedures for the Badge # cabinet, but there's no reason why we couldn't have the same kinds of procedure lists for other cabinets. And in fact, it's really useful to do so because it lets us partition our procedure list into more efficient ways of sorting procedures.</p>
+        <p id="df9d3bee-a642-4173-acd1-3d82ff3a8bd8" class="">So far, we've only maintained a list of procedures for the <em>Badge #</em> cabinet, but there's no reason why we couldn't have the same kinds of procedure lists for other cabinets. And in fact, it's really useful to do so because it lets us partition our procedure list into more efficient ways of sorting procedures.</p>
         <p id="86bfb1df-6393-41f4-bfed-1d8038e88bb3" class="">For example, suppose there's an ongoing investigation where the FBI wants to know if there are any changes to officers in the 50th precinct with the last name Colombo. </p>
-        <p id="3e23f0e0-6f00-4246-9011-e5d07b7ccfd6" class="">We could create a procedure for the Badge # cabinet that checks whenever a name or a precinct changes, then checks if it's the 50th precinct and last name Colombo. </p>
+        <p id="3e23f0e0-6f00-4246-9011-e5d07b7ccfd6" class="">We could create a procedure for the <em>Badge #</em> cabinet that checks whenever a name or a precinct changes, then checks if it's the 50th precinct and last name Colombo. </p>
         <p id="66baeb96-7acf-48df-9757-4466c127da27" class="">
         </p>
         <figure id="20592cc7-f55b-497c-ba81-d1f6a588252a" class="image"><img style="width:336px" src="assets/Filing_cabinets_29.png">
@@ -367,19 +358,19 @@ August 26, 2020
         <p id="b651fcaf-8fc3-48ac-baa3-a4deeb941fee" class="">However, there's going to be a lot of wasted effort checking this procedure every time a precinct is changed. For example, suppose Officer Smith moved from precinct 60 to 61 — when you lookup procedures, you'll see this procedure and need to check for Colombo in the 50th precinct. </p>
         <p id="8b2ffa0e-b5d9-43ca-9c4c-4d7a6b318c85" class="">
         </p>
-        <p id="e939ea36-08b4-484a-83c9-90f0c96bff05" class="">There's a better solution — we can create a procedure for the Precinct cabinet. Recall that the Precinct cabinet is a compound sort by precinct, then name. Thus, we can make our procedure cabinet really granular by using a compound sort for the procedures.</p>
+        <p id="e939ea36-08b4-484a-83c9-90f0c96bff05" class="">There's a better solution — we can create a procedure for the <em>Precinct</em> cabinet. Recall that the <em>Precinct</em> cabinet is a compound sort by precinct, then name. Thus, we can make our procedure cabinet really granular by using a compound sort for the procedures.</p>
         <p id="66aea4f6-eb4e-45ce-bff8-8a3d59fc29a2" class="">
         </p>
         <figure id="b316862e-b959-4eaa-b860-b3f901526cdc" class="image"><img style="width:336px" src="assets/Filing_cabinets_27.png">
-          <figcaption>Precinct Procedures cabinet sorted by precinct then name.</figcaption>
+          <figcaption><em>Precinct Procedures</em> cabinet sorted by precinct then name.</figcaption>
         </figure>
         <p id="b45b7a9f-4b3d-4ef6-ad26-31061a6aaf4a" class="">
         </p>
-        <p id="5fc771fd-a9b5-48e7-b904-94ba80bbb1aa" class="">Now, when I move Officer Smith from precinct 60 to 61, I will see a procedure telling me to update the Precinct cabinet, and after updating the Precinct cabinet, I will lookup procedures for the Precinct cabinet to see if there are any procedures for Precinct 61 and name Smith. Notice that we are able to skip over the procedure that checks for precinct 50 and name Colombo. This is really efficient!</p>
+        <p id="5fc771fd-a9b5-48e7-b904-94ba80bbb1aa" class="">Now, when I move Officer Smith from precinct 60 to 61 (first cabinet in the image below), I will see a procedure telling me to update the <em>Precinct</em> cabinet, and after updating the <em>Precinct </em>cabinet, I will lookup procedures for the <em>Precinct</em> cabinet to see if there are any procedures for precinct 61 and name Smith. Notice that we are able to skip over the procedure that checks for precinct 50 and name Colombo. This is really efficient!</p>
         <p id="7e67b887-f5ec-419b-9dad-1b31d95e7703" class="">
         </p>
         <figure id="19a894c7-78e3-4c34-b50d-dace1fd4f5d0" class="image"><img style="width:960px" src="assets/Filing_cabinets_36.png">
-          <figcaption>Updating Officer Smith's precinct to 61, updating the Precinct cabinet, and seeing not relevant procedures in the Precinct procedures cabinet.</figcaption>
+          <figcaption>Updating Officer Smith's precinct to 61, updating the <em>Precinct</em> cabinet, and seeing no relevant procedures in the <em>Precinct</em> <em>Procedures</em> cabinet.</figcaption>
         </figure>
         <p id="ab3626fe-f75e-4d2b-a39f-7dc4d9340268" class="">
         </p>
@@ -388,7 +379,7 @@ August 26, 2020
             <details>
               <summary>🤖 Technical Details</summary>
               <p id="142e7ea8-ecfd-45f8-b320-332f5d114d04" class="">From a SQL perspective, this is similar to creating a trigger on an index (you can't do this, but you kind of can if you generate indexes yourself with separate tables), creating a hierarchy of updates and thus eliminating some wasted effort. Furthermore, we're creating conditional procedures that can be efficiently queried.</p>
-              <p id="3ee3fd95-54cf-434b-bcc8-a8786d72eb91" class="">It's possible that we want to listen to changes for an entire precinct, not just a specific person in a precinct, and we can use this same Precinct and Precinct Procedures cabinets to do this if we generalize how this works. </p>
+              <p id="3ee3fd95-54cf-434b-bcc8-a8786d72eb91" class="">It's possible that we want to listen to changes for an entire precinct, not just a specific person in a precinct, and we can use this same <em>Precinct</em> and <em>Precinct Procedures</em> cabinets to do this if we generalize how this works. </p>
               <p id="70981c25-7d9e-4224-8d2f-68f22c849539" class="">Suppose we want a procedure to run for updates to precinct 51 for any name. We can add a procedure sorted by the tuple [51] which comes before [51, A]. And when we lookup procedures, for [51, Colombo], we just need to make sure that we lookup not just [51, Colombo] but for all prefixes a well — in this case, [] and [51]. Note that [] means "any change to this filing cabinet".</p>
             </details>
           </li>
@@ -401,18 +392,18 @@ August 26, 2020
         <h2 id="787cc6e9-f0b6-4d0b-b050-323e68a743ff" class="">Audit Log</h2>
         <p id="d1535670-5b43-4fcc-b71d-00f2742ea8ef" class="block-color-gray">Receipts, forms, requests to change information.</p>
         <p id="0f26c172-2e64-425a-a9cf-2f499db0abed" class="">There comes a time when there are so many people and so much information changing that it becomes important to keep track of all the details around who is changing what and when.</p>
-        <p id="a947ec18-40b8-47b3-8e28-4a121d059f1d" class="">For example, maybe you open up the file for Officer Jones and it says he is a detective. And maybe you thought he was just a deputy so you might be inclined to ask questions like "when was he promoted?", "who promoted him?", and "how many promotions were there this year?". </p>
+        <p id="a947ec18-40b8-47b3-8e28-4a121d059f1d" class="">For example, maybe you open up the file for Officer Jones and it says he is a detective. And maybe you thought he was just a deputy, so you might be inclined to ask questions like "when was he promoted?", "who promoted him?", and "how many promotions were there this year?". </p>
         <p id="3ad94a26-6bd1-4ea8-a138-3584d305764e" class="">These questions are impossible to answer with our current setup and you can imagine that if you were administering a bank, you'd be asking these kinds of questions all the time about the movement of money between accounts. </p>
         <p id="943e4bb8-6bce-420b-a663-dc4231918daa" class="">At a bank, every transfer between accounts is going to be documented with some sort of receipt that gets saved forever. And at our police department, changing any information might be documented with some kind of form. For example, when the police chief wants to promote Officer Jones to detective, he fills out a "promotion form" and delivers it to the filing clerk at the administration office.</p>
-        <p id="7e69d491-af6e-4dde-9808-fb3abf88813d" class="">The filing clerk might put this form in a filing cabinet for promotion forms sorted by rank and then date. Then we look up a set of procedures for this promotion, one of which is simply updating the rank of the officer in the Badge # cabinet.</p>
+        <p id="7e69d491-af6e-4dde-9808-fb3abf88813d" class="">The filing clerk might put this form in a filing cabinet for promotion forms sorted by rank and then date. Then we look up a set of procedures for this promotion, one of which is simply updating the rank of the officer in the <em>Badge #</em> cabinet.</p>
         <p id="5e505555-2543-4017-89be-a90b8e6862b0" class="">
         </p>
         <figure id="fb440fc7-7f25-4e25-a3cd-086716822984" class="image"><img style="width:2388px" src="assets/Filing_cabinets_30.png">
-          <figcaption>The process of filing a promotion form, looking up procedures and updating the tank in the Badge # cabinet.</figcaption>
+          <figcaption>The process of filing a promotion form, looking up procedures and updating the tank in the <em>Badge #</em> cabinet.</figcaption>
         </figure>
         <p id="1ae1bc10-70e9-448c-acb1-8bc1f11c896f" class="">
         </p>
-        <p id="bcc2271c-5e89-446c-b260-8ea8f89c30fa" class="">This process definitely requires more work than simply updating the officer's rank in the Badge # cabinet, but it allows us to audit changes and answer a broader set of questions about how things have changed over time. For example, we can look at all promotions by rank over time from the Promotion Forms cabinet. And if we wanted to determine when an officer was promoted, we can create a separate cabinet that sorts these promotion forms by badge number, then date.</p>
+        <p id="bcc2271c-5e89-446c-b260-8ea8f89c30fa" class="">This process definitely requires more work than simply updating the officer's rank in the <em>Badge #</em> cabinet, but it allows us to audit changes and answer a broader set of questions about how things have changed over time. For example, we can look at all promotions by rank over time from the <em>Promotion Forms</em> cabinet. And if we wanted to determine when an officer was promoted, we can create a separate cabinet that sorts these promotion forms by badge number, then date.</p>
         <p id="2476f80c-0f89-48c2-aed9-6e95fbbf29f9" class="">
         </p>
         <p id="5768cdda-39ca-447a-a64a-01ac458ec01b" class="">When keeping a historical list of changes for auditing purpose, it's often important to build mechanisms to make sure that the information is not tampered with.</p>
@@ -465,9 +456,8 @@ August 26, 2020
         <p id="5e2a7a7f-3a4c-491f-90b2-b271ce6ac5a8" class="">
         </p>
         <hr id="2b3f10f5-051e-4423-915d-568d5445e7c7">
-        <p id="cc224f85-b51a-4042-b205-3338ca70f642" class="block-color-gray">Published January 10, 2020 by <a target="_blank" href="https://www.chetcorcos.com/">Chet Corcos</a></p>
-        <p id="03105e1b-800b-4ff8-9183-46d39f74cd35" class="">
-        </p>
+        <p id="cc224f85-b51a-4042-b205-3338ca70f642" class="block-color-gray">Published January 12, 2020 by <a target="_blank" href="https://www.chetcorcos.com/">Chet Corcos</a></p>
+        <p id="7919c991-5a13-45e7-a2d1-5cd283376258" class="block-color-gray">Thanks to Haris Butt and Max Einhorn for reading drafts of this.</p>
       </div>
     </article>
 

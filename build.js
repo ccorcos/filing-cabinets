@@ -73,7 +73,6 @@ const $ = cheerio.load(htmlContents);
 // Remove the links that wrap around images.
 const images = $("figure > a > img");
 for (const img of images) {
-  console.log(img);
   $(img.parent).replaceWith(img);
 }
 

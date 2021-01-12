@@ -1,0 +1,734 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A More Human Approach To Databases</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11a30b1e-c550-4fc7-bfc2-6dba8e6d39bd" class="page sans"><header><h1 class="page-title">A More Human Approach To Databases</h1></header><div class="page-body"><hr id="5022b494-4d62-4cdb-949e-71cde6598179"/><nav id="4703ad93-fce6-4453-99fa-42dca5512a69" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3751badc-7cef-477e-abd3-53ef25ed81cd">Motivation</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#06998e18-a3dc-43fa-9f07-4d6e81c66d75">What is a database?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b5562604-4d38-4feb-84bd-6f536aea58cc">What is sorted information?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2506f4f8-d6d4-4654-ba10-f0801a04519b">Administering a Police Department</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c78d6501-da7f-4633-b2e4-4a429cfd0008">Read/Write Trade-off</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8aade976-8b64-4804-966b-1a73e288531f">Query Planning</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#17c00d10-fa62-4273-be7a-f46e14592775">Procedure Cabinet</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#787cc6e9-f0b6-4d0b-b050-323e68a743ff">Audit Log</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8a0a55a1-9b0e-4dc0-96f2-a68f896a258e">Beyond Filing Cabinets</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5b1aa59e-ef91-4a20-af54-367782283022">Conclusion</a></div></nav><hr id="70bf0a0b-e2be-4205-ab11-7380136e2a36"/><h1 id="3751badc-7cef-477e-abd3-53ef25ed81cd" class="">Motivation</h1><p id="6595f0c7-f94b-4772-8c12-22b107c82c47" class="">End-user databases are all the buzz these days — Notion, Airtable, Coda, Roam, etc. These products have made it possible for people to model information in a way that feels more natural and intuitive to the way we experience it in our daily lives.</p><p id="69014b56-b04f-4baf-be70-2c0ba0ad30e9" class="">I love building products like Notion, but building these kinds of products is hard. For two reasons:</p><ol id="3c07bc59-4c8a-4b48-bdb0-1bf930336c2e" class="numbered-list" start="1"><li>Most people don&#x27;t have the technical literacy about databases and information architecture to actually automate and organize their lives with these tools.</li></ol><ol id="d5625fcf-2e32-45ce-acc4-d73e1d38d037" class="numbered-list" start="2"><li>The databases we have today aren&#x27;t well-suited for dynamic user-generated filters and sorts.</li></ol><p id="aa0edb68-c072-4214-acf9-8e6e243900dd" class="">This second challenge is more technical and I will hide all of these programmer-related details behind a toggle so you don&#x27;t have to read them if you&#x27;d like.</p><ul id="33a92bec-cc3c-4881-9fda-d91198d3ffee" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="64d9a82d-8237-4a9f-b83f-eb9eae786157" class="">Underneath any end-user database is <em>another</em> database and so much complexity arises from the challenge of building a database inside a database. Solutions to this problem vary widely and make some sort of trade-off between scalability (performance) and complexity.</p><p id="9dd2cc1a-1eb6-4af8-9c22-d486c3e9dc99" class="">Some applications load the entire end-user database in-memory. This creates long initial load times, but really performant interactions once the application loads. There are obvious scalability issues with this approach, but it is fairly simple to implement.</p><p id="e10696df-1d8a-47ff-9365-701d9ff58d00" class="">Other applications resort to O(n) scans on the server to fetch data and filter/sort records in memory with a few caching and indexing optimizations when convenient. The problem here is that users can create their own columns and filters dynamically. If your cloud application is backed by a SQL database, for example, it’s worrisome to allow users to edit the database schema and create an unbounded number of tables and indexes. Thus, you must resort to filtering records in-memory.</p><p id="30d92414-92a1-4469-99ba-643219826c94" class="">If you&#x27;re dedicated to O(log n) queries, you&#x27;ll need to build indexes yourself (unless there&#x27;s some amazing database I am unaware of). On every write, you can compute what indexes need to be updated and you write to a NoSQL database to incrementally update a cached query result. This can lead to a good solution, but it comes at the cost of consistency. Now that you&#x27;re building your own indexes outside of the database, writes are no longer transactional and you lose the guarantee of being able to read your own write.</p><p id="c04b352e-bd9a-44ad-ba88-17ac5cc502ff" class="">Another solution is to have a separate database for every user and allow users to edit the schema of their own isolated database. This allows writes to be transactional, but creates other kinds of collision problems (i.e. dealing with merge conflict) when you want users to be able to collaborate. With separate databases for each user, you&#x27;re also doing a lot more computing labor, especially if the same records are shared amongst many people.</p><p id="7c45a3a9-7051-4386-a53f-d246c9ba7310" class="">Long story short, existing databases are not great for building end-user databases.</p><p id="9e0ecc82-b887-4852-966d-3e61551313d9" class="">
+</p></details></li></ul><p id="bde1472f-3ccb-4e36-a603-fb95fd541ff3" class="">
+</p><p id="f41a9378-fc1b-4ea2-a13a-cb918178cff3" class="">I plan to address this first reason by giving you a mental model of what databases are and a first-principles understanding of how they work.</p><p id="1d0ea7ea-6760-43cc-a728-4b3a1d7efe3b" class="">I&#x27;ll introduce databases as an abstract concept and then we&#x27;ll work through a real-world example to explore how databases leverage sorting and filters to lookup information quickly.</p><p id="088e64ab-1cbd-49c2-85e5-ac16a93efcfa" class="">By the end, I hope to show you how these information architecture concepts are immensely powerful and totally approachable for non-technical people. </p><p id="69cf1cd2-0e55-4a55-8d70-a407a8cba1e3" class="">Lastly, I want to convince you that software based on these concepts will be far superior to anything we use today for end-user database applications. If these concepts are interesting to you, <a href="mailto:ccorcos@gmail.com">please reach out</a>! I love sharing ideas. 😁</p><h1 id="06998e18-a3dc-43fa-9f07-4d6e81c66d75" class="">What is a database?</h1><p id="a546e1c2-8a2d-4d3a-8d6b-0e74b0f867f0" class="block-color-gray">Databases are filing cabinets.</p><p id="437c4e5d-072f-4e2c-a690-f23c26fa06f4" class="">Databases don&#x27;t have to be so complicated. If you strip away all the fancy semantics, you end up with something simple and familiar.</p><p id="af4c3a84-a605-4050-b867-f32dfa6e6d3e" class="">
+</p><div id="013ec826-289a-4648-bbd2-c818fee7e19d" class="column-list"><div id="7ce78c2a-cd0d-44f5-9bc5-2272d346cb69" style="width:33.33333333333333%" class="column"><figure id="172da265-0bd4-4106-a157-fcddcca0f2e8" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_32.png"><img style="width:320px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_32.png"/></a><figcaption>Dictionary</figcaption></figure><p id="897b3684-10c5-4b94-9f9b-81a2705c429a" class="">
+</p></div><div id="65071194-79d6-4c1c-9be0-7df3766ddec1" style="width:37.5%" class="column"><figure id="aadda762-1423-41c8-8c4c-e3387b05cff9" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_33.png"><img style="width:365px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_33.png"/></a><figcaption>Calendar</figcaption></figure></div><div id="a2160bfa-7c18-47e9-ac4c-360c7e0549d9" style="width:29.166666666666686%" class="column"><figure id="440d81f2-8412-4ff1-94b2-59ba11a16d9c" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_34.png"><img style="width:414px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_34.png"/></a><figcaption>Filing Cabinet</figcaption></figure><p id="ff406df9-ffe0-4511-9834-6af64bb4de05" class="">
+</p></div></div><p id="2f5bbfdf-b821-42d1-9376-6b5cbb7a0280" class="">
+</p><p id="aef2d2df-d75a-43cf-a023-943585a6f450" class="">Dictionaries, calendars, and filing cabinets are particularly useful because they represent information in a sorted order, making it possible for us to retrieve information quickly and efficiently using a process called <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>. Databases are no different, they&#x27;re also containers of sorted information.</p><p id="4b7fa946-b21d-464d-acdd-b57ba413436e" class="">
+</p><figure id="5d980e68-82d2-4fa5-b66c-43ad2de59b5c" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_4.png"><img style="width:240px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_4.png"/></a><figcaption>Binary search</figcaption></figure><p id="6e586a48-e28e-45ed-8622-b123875fab49" class="">
+</p><h2 id="b5562604-4d38-4feb-84bd-6f536aea58cc" class="">What is sorted information?</h2><p id="2238e190-e73f-43c3-96d3-44daa545e966" class="block-color-gray">Alphabetical, numerical, compound, lexicographical Encodings.</p><p id="e4db1ca2-03e3-4767-883b-83b12f484fd6" class="">The simplest way to sort something is alphabetically (a.k.a <em>lexicographically</em>) and this is how words are sorted in the dictionary. But we often find ourselves sorting by more than one property. For example, a contact list is often sorted by last name, <em>then</em> first name. This is called a <strong>compound sort</strong>. </p><p id="9352e66e-c634-486f-8dd2-ff042f8fece5" class="">
+</p><p id="3f686c5c-6eed-4ad6-8eb3-73168fa60be6" class="">For example, notice that &quot;Thomas Robins&quot; should come before &quot;Charlie Robinson&quot; when sorting this way and that a compound sort is fundamentally different from simply joining the words together and then sorting.</p><pre id="82947e67-674e-4edd-8b12-6d7a800dee7a" class="code"><code>// Compound Sort: Last, First
+Robins, Thomas
+Robinson, Charlie
+
+// Joining the words, then sorting: Last + First
+RobinsonCharlie
+RobinsThomas</code></pre><p id="e043b9b7-c263-4a69-8e61-b0e69cda57a4" class="">
+</p><p id="c545d059-b2b0-4678-8fd4-40aa6d7bdafd" class="">We do this kind of compound sorting all over the place. Dates, in particular, are compound sorted by year, <em>then</em> month, <em>then</em> day.</p><pre id="cc0fb85d-ab5f-4e44-8947-0a504713b758" class="code"><code>January 10, 2019
+...
+December 28, 2019
+...
+August 26, 2020
+...</code></pre><p id="ef7175d9-a258-4f95-afe7-0ce9b274df54" class="">Notice that this kind of sorting isn&#x27;t exactly alphabetical. The months in a year are definitely not sorted alphabetically — each month has an underlying order within a year. Even days of the month aren&#x27;t alphabetically sorted — they&#x27;re numerically sorted.</p><p id="19c3889a-b5a7-4c0d-9392-86230f237052" class="">
+</p><p id="9d475882-2657-4dc0-a0d4-7e8456c1a201" class="">Numerical sorting is different from alphabetical sorting because alphabetical sorting compares letter-by-letter. For example, if we sorted numbers alphabetically, then 10 would come before 2 because the first digit &quot;1&quot; is before &quot;2&quot;.</p><pre id="e4876df9-d390-4c6e-b0a8-c3201a7e43fa" class="code"><code>// Alphabetical Sort
+1
+10
+11
+2
+3
+...
+9
+
+// Numerical sort
+1
+2
+3
+...
+9
+10
+11</code></pre><p id="934e9af4-eb81-43ab-8dd1-9d973c87eb93" class="">A simple way to represent numbers in a way that can be sorted alphabetically is to put zeros at the beginning of the number. This works well for small numbers with a known maximum size such as the months in a year. </p><pre id="245e5864-d979-4b11-944c-eb6a46ade312" class="code"><code>// Zero-padded numbers representing months in a year.
+01
+02
+03
+...
+09
+10
+11
+12</code></pre><p id="becf436f-03a3-4bad-a0f7-519f75156d75" class="">And in fact, we can represent dates in a way that can be sorted alphabetically using <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 date format</a>. </p><pre id="6c4b1b11-3f63-4789-b0d5-4e0145fc9750" class="code"><code>2019-01-10
+...
+2019-12-28
+...
+2020-08-26
+...</code></pre><p id="8a18cfcf-db12-4ac6-8f4c-4d07dbf7b62b" class="">
+</p><p id="82017443-040f-4acf-9810-23cd870f9c5e" class="">Representing dates this way is convenient because it doesn&#x27;t require domain knowledge to understand how to sort them. There are an infinite number of things that can be sorted arbitrarily: a deck of cards, the status of a project, your rock collection—they are all just different types of things.</p><p id="7ddb731a-5ae6-4745-8134-9dc166ec26f4" class="">In general, lexicographical encodings are important because they allow databases to store arbitrary information in the correct order without needing additional knowledge about the type of information that is being sorted.</p><p id="f7acb05d-9745-4184-b9bc-13acd25680d0" class="">
+</p><ul id="9983c3de-f661-4eb5-82a0-54f7af61c590" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="5339e8c2-5d28-41fe-8f64-fca7f3df92c3" class="">You&#x27;ve probably experienced frustration with this when looking at files in your filesystem. <a href="https://en.wikipedia.org/wiki/Natural_sort_order">Natural sort</a> solves this problem elegantly by representing both alphabetical and numerical sort at the same time.</p><p id="22c8cbba-c26b-4fb1-8f46-f50abce95449" class="">Representing numbers as lexicographically sortable is another interesting challenge, particularly very large and very small numbers. <a href="https://github.com/ealmansi/elen/blob/master/resources/elen.pdf">Elen</a> is an interesting approach for encoding floating precision numbers.</p><p id="31067abe-ad6c-4491-b84a-825c02101577" class="">Tuples can be represented as compound sortable by separating each item with null-byte (and escaping null-bytes inside each item).</p><p id="5003f170-c3f9-4e52-a674-1018970c3f16" class=""><a href="https://observablehq.com/@dgreensp/implementing-fractional-indexing">Fractional sorting</a> is a very related and interesting topic as well.</p></details></li></ul><p id="9338dc7e-ffbe-413a-98cc-91579ba4b427" class="">
+</p><h1 id="2506f4f8-d6d4-4654-ba10-f0801a04519b" class="">Administering a Police Department</h1><p id="e0f0bb9b-fa2a-4b90-9201-a13005754346" class="">You can think of databases much in the same way you think of system filing cabinets. To explore this analogy further, let&#x27;s imagine that you are in charge of administering a police department where you keep track of a variety of information about every police officer in your region — name, badge number, address, and precinct, among other details.</p><p id="52846dac-2800-4ee6-893f-277f377ad840" class="">
+</p><p id="60068181-62be-45e4-979e-b7a04b4d0ed9" class="">As the administrator of this information, you&#x27;re responsible for making sure that everything is up to date and easily accessible.</p><p id="b447ec53-c3e3-47ef-9c94-7993239cd229" class="">
+</p><p id="244c9ed1-6e90-4a3b-a370-59fa67d0cd5f" class="">To keep things simple, you start by keeping all officer information in a filing cabinet sorted by badge number. This makes it easy to retrieve information about any officer based on their badge number, for example when an officer gets promoted or moves to a new address.</p><p id="b9c39bf4-e69e-4710-a3c2-57496e1f5396" class="">
+</p><figure id="7b5ff822-3bb7-4db6-b9a1-3872565c69bb" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_8.png"><img style="width:288px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_8.png"/></a><figcaption>An officer&#x27;s file in the <em>Badge #</em> cabinet.</figcaption></figure><p id="489257bb-fe75-4bb2-8797-c088256279e4" class="">
+</p><h2 id="c78d6501-da7f-4633-b2e4-4a429cfd0008" class="">Read/Write Trade-off</h2><p id="e6dfff08-0cd8-4af5-96b2-448a8a05302c" class="block-color-gray">How we copy information into other cabinets.</p><p id="47066dd1-5373-4fac-8a18-0a29a5703390" class="">One day, the police chief asks you for the address of every officer in the 60th precinct.</p><p id="46c18841-1de6-4cd9-a084-cb39b033b939" class="">With all of this information in a single filing cabinet sorted by badge number, this is a painful request because you have to scan through every file and check if each officer is in the 60th precinct.</p><p id="9fb77909-54eb-4ecb-9059-10642f19e8f1" class="">Maybe this is just a one-time request so you can labor over it and be done with it, but the police chief says that every month he wants to mail a bonus check to every officer in the precinct with the most arrests. If you&#x27;re going to have to do this every month, maybe it&#x27;s worthwhile to make this job a bit faster.</p><p id="6151fc61-5448-4732-a43c-6e3961b146ac" class="">
+</p><p id="da5b845b-2a98-48f0-a688-857dd844a990" class="">To solve this problem, you create another filing cabinet where you sort all officers by precinct. To keep things simple, you photocopy all of the information in the <em>Badge #</em> cabinet over to the <em>Precinct</em> cabinet. Now when the chief asks you to get the address of every officer in a precinct, you can use this new filing cabinet to quickly retrieve the information.</p><p id="484fc57d-3e3f-480f-96eb-3a437a385c83" class="">This new filing cabinet makes it easier for you to get information, but you&#x27;ve created a new problem every time you have to update the information. If a new officer joins a precinct or an office moves from one precinct to another, you now have to make sure the information is correct and updated in two different places.</p><p id="29d77e1d-505f-4e7b-b6fd-fd13c3a2faf5" class="">
+</p><figure id="51d2bd9f-be47-423b-8466-b384ab588ebe" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_9.png"><img style="width:528px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_9.png"/></a><figcaption>Updating the address <em>Badge #</em> cabinet as well as the <em>Precinct</em> cabinet.</figcaption></figure><p id="b8e4ed8a-b59a-4ee5-a695-cbc525dc38b8" class="">
+</p><p id="6657ec65-af78-48b7-a19c-807269e42b1f" class="">Making things worse, we end up wasting time keeping unnecessary information up to date. For example, maybe we don&#x27;t need the date of birth or a photo of the officer in the new <em>Precinct</em> filing cabinet we made, but we copy it over anyway so the information doesn&#x27;t get out of sync.</p><p id="315f0606-dd54-44e0-b355-836e19570436" class="">
+</p><figure id="334824fe-43ca-4fb6-a9a0-002cba87f78b" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_11.png"><img style="width:528px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_11.png"/></a><figcaption>Updating the name and photo in <em>Badge #</em> cabinet as well as the <em>Precinct</em> cabinet.</figcaption></figure><p id="9fb99c18-cc0c-40e5-8f3d-f82db7855abb" class="">
+</p><p id="d40e75d1-a726-4543-9029-4098c404910c" class="">On the other hand, maybe we decide that the only information we store in the <em>Precinct</em> cabinet is the badge number. This makes changing and managing information about the officers require much less work — we only need to update it in the original <em>Badge #</em> cabinet. It also means that the <em>Precinct</em> cabinet is much smaller because we don&#x27;t have as much information crammed in there. </p><p id="079cd311-9a18-4f93-888e-3a1f91ef2843" class="">But there&#x27;s a catch. Now if you need to get the address for every officer in a precinct, you&#x27;ll have to first use the new filing cabinet you made to get the list of officers in the precinct and then you&#x27;ll have to use the original <em>Badge #</em> filing cabinet to get the address for each officer. This is still quicker than not having a <em>Precinct</em> cabinet, but not as fast as the previous approach for scanning through every officer&#x27;s file.</p><p id="b1bdf058-e8b1-4c97-b874-9808b42d3354" class="">
+</p><figure id="9857ca70-3f5e-4907-af02-ec1030fb0b3d" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_12.png"><img style="width:528px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_12.png"/></a><figcaption>Lookup each badge number from the <em>Precinct</em> cabinet in the <em>Badge #</em> cabinet.</figcaption></figure><p id="c3ef53a8-1d09-4ada-944d-28d522e91168" class="">
+</p><p id="40860ff9-4b13-4ad9-870a-b598a22a503b" class="">Fundamentally, there is no &quot;best&quot; way to do this — it&#x27;s all a trade-off between how much work you want to do when reading vs writing information.</p><p id="e265a347-ac39-49e1-b2f3-14cfe12342e1" class="">
+</p><p id="7e567708-af2d-4a48-92fe-2016883eefc6" class="">There is a middle ground between these two approaches where we record both the address and the badge number in the new <em>Precinct</em> filing cabinet we created. This strikes a nice balance where we don&#x27;t have to update information that we don&#x27;t care about in the <em>Precinct</em> cabinet.</p><p id="3198ef5a-42a7-4b66-b688-25122177a995" class="">
+</p><figure id="ff8c340f-f8b1-4153-beb6-f1ce3c4f8483" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_35.png"><img style="width:528px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_35.png"/></a><figcaption>Updating only the address in the <em>Precinct</em> cabinet.</figcaption></figure><p id="b59b5cfd-36a9-42c2-8b95-ccca9ee58c5d" class="">
+</p><p id="4ada80fd-f860-4762-89be-210d13869f35" class="">However, this does come with some logistical overhead — now we have a list of procedures we have to follow when updating the <em>Badge #</em> cabinet:</p><p id="3cc9774c-2588-4dc1-bcbc-da8aa810df78" class="">
+</p><figure id="b5793ec9-6f93-4813-97e2-5dc5e651e2bc" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_16.png"><img style="width:336px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_16.png"/></a><figcaption>Procedures to follow when updating the <em>Badge #</em> cabinet.</figcaption></figure><p id="deddf17d-f158-4fa5-8cc3-d3cbe2499267" class="">
+</p><ul id="55153859-c844-4800-9be5-79595d16fd89" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="a0e3039f-6b44-45a2-9169-0d4f6ea17f7a" class="">There is a direct analogy here with SQL. The <em>Badge #</em> cabinet is the officers table with the badge number as a primary key. The <em>Precinct</em> cabinet is an index on the officers table.</p><p id="7db4b101-5eaa-49c1-af31-751663a754e7" class="">And the procedures list is just the list of SQL indexes on the officers table defined by the database schema that internally needs to be updated whenever an officer is updated.</p><p id="bbe3613b-8c6c-4546-b88f-c0457989dcd7" class="">This procedures list will also include SQL triggers on the officers table. While SQL does not let you create indexes on information joined across tables, you can effectively achieve this with triggers.</p></details></li></ul><p id="e7da7be4-f98c-437f-911e-abc8b15d5c27" class="">
+</p><h2 id="8aade976-8b64-4804-966b-1a73e288531f" class="">Query Planning</h2><p id="070420fd-5742-4eaf-9132-f255e7e888fc" class="block-color-gray">Determining how to answer a question with existing filing cabinets.</p><p id="64a5e67d-4b2e-45d2-a98b-46b994a7bbeb" class="">Now let&#x27;s suppose that whenever someone files a complaint against an officer, we want to make note of the complaint in the officer&#x27;s file. Often times, when someone files a complaint, they don&#x27;t have the badge number for the officer but they do have the name of the officer.</p><p id="899d2b14-1e2e-40fb-9d66-efe40f60341b" class="">To make it easier to look up officers by name, we create another filing cabinet to sort all officers by name. Our filing system now looks like this:</p><p id="aa19fe50-f8f8-499e-9510-4863e5b197e2" class="">
+</p><figure id="18a5a463-362e-4c09-ae01-d975a94b7f6e" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_17.png"><img style="width:432px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_17.png"/></a><figcaption>Three filing cabinets: <em>Badge #</em>, <em>Precinct</em>, and <em>Name</em> along with the procedure list for keeping everything up to date.</figcaption></figure><p id="f48efb63-1290-440a-8d87-397686572bd0" class="">
+</p><p id="005d9cd6-4e80-4cfd-9841-70099b8cc899" class="">Now let&#x27;s imagine this police department grows from 10k officers to 10M officers. You receive a complaint for Officer Smith with brown hair, blue eyes, from the 121st precinct.</p><p id="1812773c-b14b-4ba8-859d-f930ced4c2d7" class="">You&#x27;re considering two different ways of looking up this officer — you can either scan through every officer in the 121st precinct looking for Officer Smith or you can scan through every officer with last name Smith looking for the officer in the 121st precinct.</p><p id="381e9523-b673-44a2-b2b7-b86ca91ff0e6" class="">You make an assumption that there are probably fewer people with the same name than there are people in the same precinct, so you decide to first look up the officer by name.</p><p id="1a1761e0-fb51-4b78-8f5a-1a8f0874e7ee" class="">In databases, this process is called <strong>query planning:</strong> you have a question (some information you want to retrieve) and an existing filing cabinet setup, and you need to determine the quickest way to gather all of this information.</p><p id="2ca2d477-0299-45b9-904f-fbc438736f26" class="">
+</p><ul id="420e719f-4df9-4bba-aae8-9a00b0dd8509" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="21858b9b-2fb0-4cbb-9fc6-01585cdbd4ff" class="">The trade-off we just considered by intuition is exactly what a SQL database&#x27;s query planner does. The query planner uses heuristics about how distributed the data is in different columns in order to choose which index to scan that will have the smallest amount of results.</p><p id="9f3dc540-8726-4241-a9da-f3bff29e2ae6" class="">That said, heuristics aren&#x27;t perfect and it&#x27;s totally possible that there are more officers with last name Smith than the number of officers in any given precinct.</p></details></li></ul><p id="3edff0cc-a3ec-45dc-9bde-4d653f597480" class="">
+</p><p id="803abd00-a1cf-4a8e-b950-8006c554636e" class="">So you look into the <em>Name</em> cabinet that you created and end up finding out that there are actually hundreds of officers named Smith in the 121st precinct. Once again, you decide it&#x27;s worth figuring out a faster way to do this.</p><p id="d8a45ce0-ec8c-4b17-8227-9645f2a8cf2d" class="">What you want is something like the <em>Precinct</em> cabinet that you created with a secondary sort by officer name. But the <em>Precinct</em> cabinet doesn&#x27;t include officer names, so you would have to create a new filing cabinet to include them. You decide it&#x27;s probably more efficient to just copy the officer names over to your existing <em>Precinct</em> cabinet and sort by name to save some space.</p><p id="e1aa2b6f-1f20-482d-8c2c-1add52bd1d33" class="">As we discussed earlier, this is a compound sort since we&#x27;re sorting on more than one property: precinct, then name. </p><p id="7c53fc66-5f22-4d8b-bfab-6b055d8495bc" class="">
+</p><figure id="747f50e5-8bee-43c4-a650-feb53247858e" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_19.png"><img style="width:432px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_19.png"/></a><figcaption>Modifications to the procedure list and the <em>Precinct</em> cabinet to accommodate for a secondary sort on name.</figcaption></figure><p id="3ec35d9c-d62e-459e-a989-f2f013a2ab31" class="">
+</p><h2 id="17c00d10-fa62-4273-be7a-f46e14592775" class="">Procedure Cabinet</h2><p id="7c27f3bf-0841-47fa-bec8-21e2e3375ed4" class="block-color-gray">Automating internal mechanisms.</p><p id="0eab5b30-0338-4c9f-be49-8eb5a20dfd8b" class="">In response to public outcry about skyrocketing officer complaints, the police department has hired local auditing firms to audit each precinct. Now whenever information about an officer is added or modified, we need to notify the auditing team assigned to the officer&#x27;s precinct about the changes.</p><p id="ed938077-170b-41bf-8c1c-f2384a88b381" class="">We start to write out these procedures on the same list as before, but we start to realize that this is going to be a really long list of procedures.</p><p id="74403848-3155-4110-9b4a-0c0a39918f32" class="">
+</p><figure id="9fd8a5c1-9784-426a-8a81-4e09f905269c" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_21.png"><img style="width:336px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_21.png"/></a><figcaption>Long list of procedures specifying which address to mail to for a given precinct.</figcaption></figure><p id="a7c9e215-40a0-4023-9245-b019357353af" class="">
+</p><p id="8c0704f5-3c64-45e7-ac73-e8c2fa76c23d" class="">Every time we make a change to the <em>Badge #</em> cabinet, we now need to scan through this huge list of procedures and it takes too much time. So what we do is quite simple, we move all of the auditor addresses into a new filing cabinet and add a step to our list of procedures that tells the clerk where to lookup the auditor&#x27;s address.</p><p id="2534ca4a-8111-4e28-94bf-3bf089389c86" class="">
+</p><figure id="cf696d24-36ca-4362-91b7-4096853a10a6" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_24.png"><img style="width:528px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_24.png"/></a><figcaption>A filing cabinet called <em>Precinct Auditors</em> with the addresses of each auditor and a single procedure to lookup the appropriate address.</figcaption></figure><p id="17ba4474-57bd-48ad-a6b1-795c099344f7" class="">
+</p><p id="4f5620b3-b135-4fc1-8942-a1f5ef66f88b" class="">This is much more manageable, but as you can imagine, the procedure list will keep growing as the organization evolves in complexity; the HR department wants to know whenever an address changes or a complaint is filed; the Finance department needs to know whenever an officer is promoted so they can adjust their paychecks appropriately — the list of procedures goes on.</p><p id="eb815064-f45f-443f-84e7-643e65395426" class="">
+</p><figure id="c401167f-1b2a-4944-b480-dc059c0a739d" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_25.png"><img style="width:288px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_25.png"/></a><figcaption>Procedures for notifying HR and Finance departments.</figcaption></figure><p id="9a8f908f-8012-473a-9ba0-54be3a86f40a" class="">
+</p><p id="5b212bea-f6d4-45c0-8ef7-31d468b25d56" class="">Hopefully it&#x27;s not too hard to see that this procedure list itself can be turned into a filing cabinet sorted by property. That way, we don&#x27;t need to read through every procedure for every property when we&#x27;re just updating an address. Therefore, whenever we make a change to the <em>Badge #</em> cabinet, we lookup every property that changed in this <em>Procedures</em> cabinet to see what we need to do.</p><p id="244dbd0b-160a-4957-b87c-56a70e943ed8" class="">
+</p><figure id="2d7c0f23-8a43-41c2-bb87-e1a0737d3b01" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_26.png"><img style="width:336px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_26.png"/></a><figcaption>A filing cabinet for procedures showing a procedure to mail updates to HR whenever and address changes.</figcaption></figure><p id="dd81e7fe-eeb1-4b70-8c9c-155aea28be6b" class="">
+</p><ul id="7e6c814b-ce23-47b5-b5e6-2b65dc8c0e10" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="644c00e2-3875-4191-bca5-1ebcc0360bf7" class="">This abstraction is a fundamental limitation of SQL and most database systems. In SQL, every trigger goes into a procedural list, even conditional triggers. This means that every additional trigger is going to linearly slow down every write.</p><p id="e3037b84-9f65-4cc8-85b9-2937622732ca" class="">You can do things like keep the list of auditor addresses in a separate table rather than create a bunch of triggers, but what you cannot do in SQL is have a dynamic list of stored procedures with efficient lookups.</p><p id="85a66469-969b-414e-b7cc-547912c17b89" class="">I think there&#x27;s a very pragmatic reason for this as well: without a static list of procedures then it&#x27;s difficult to predict the performance of a write without actually trying to do it, looking up the procedures, and seeing how much work it&#x27;s going to be. With a static list of procedures, you can at least look at the length of the list to understand how much work is involved.</p></details></li></ul><p id="8f205f55-cae7-4eb1-80cb-38f15aaf8391" class="">
+</p><p id="df9d3bee-a642-4173-acd1-3d82ff3a8bd8" class="">So far, we&#x27;ve only maintained a list of procedures for the <em>Badge #</em> cabinet, but there&#x27;s no reason why we couldn&#x27;t have the same kinds of procedure lists for other cabinets. And in fact, it&#x27;s really useful to do so because it lets us partition our procedure list into more efficient ways of sorting procedures.</p><p id="86bfb1df-6393-41f4-bfed-1d8038e88bb3" class="">For example, suppose there&#x27;s an ongoing investigation where the FBI wants to know if there are any changes to officers in the 50th precinct with the last name Colombo. </p><p id="3e23f0e0-6f00-4246-9011-e5d07b7ccfd6" class="">We could create a procedure for the <em>Badge #</em> cabinet that checks whenever a name or a precinct changes, then checks if it&#x27;s the 50th precinct and last name Colombo. </p><p id="66baeb96-7acf-48df-9757-4466c127da27" class="">
+</p><figure id="20592cc7-f55b-497c-ba81-d1f6a588252a" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_29.png"><img style="width:336px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_29.png"/></a><figcaption>Stored procedure triggered by a change to precinct property that says &quot;If name is Colombo and precinct is 50, then mail to the FBI&quot;.</figcaption></figure><p id="98dfcd88-2eaa-4553-853d-e47a161127b4" class="">
+</p><p id="b651fcaf-8fc3-48ac-baa3-a4deeb941fee" class="">However, there&#x27;s going to be a lot of wasted effort checking this procedure every time a precinct is changed. For example, suppose Officer Smith moved from precinct 60 to 61 — when you lookup procedures, you&#x27;ll see this procedure and need to check for Colombo in the 50th precinct. </p><p id="8b2ffa0e-b5d9-43ca-9c4c-4d7a6b318c85" class="">
+</p><p id="e939ea36-08b4-484a-83c9-90f0c96bff05" class="">There&#x27;s a better solution — we can create a procedure for the <em>Precinct</em> cabinet. Recall that the <em>Precinct</em> cabinet is a compound sort by precinct, then name. Thus, we can make our procedure cabinet really granular by using a compound sort for the procedures.</p><p id="66aea4f6-eb4e-45ce-bff8-8a3d59fc29a2" class="">
+</p><figure id="b316862e-b959-4eaa-b860-b3f901526cdc" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_27.png"><img style="width:336px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_27.png"/></a><figcaption><em>Precinct Procedures</em> cabinet sorted by precinct then name.</figcaption></figure><p id="b45b7a9f-4b3d-4ef6-ad26-31061a6aaf4a" class="">
+</p><p id="5fc771fd-a9b5-48e7-b904-94ba80bbb1aa" class="">Now, when I move Officer Smith from precinct 60 to 61 (first cabinet in the image below), I will see a procedure telling me to update the <em>Precinct</em> cabinet, and after updating the <em>Precinct </em>cabinet, I will lookup procedures for the <em>Precinct</em> cabinet to see if there are any procedures for precinct 61 and name Smith. Notice that we are able to skip over the procedure that checks for precinct 50 and name Colombo. This is really efficient!</p><p id="7e67b887-f5ec-419b-9dad-1b31d95e7703" class="">
+</p><figure id="19a894c7-78e3-4c34-b50d-dace1fd4f5d0" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_36.png"><img style="width:960px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_36.png"/></a><figcaption>Updating Officer Smith&#x27;s precinct to 61, updating the <em>Precinct</em> cabinet, and seeing no relevant procedures in the <em>Precinct</em> <em>Procedures</em> cabinet.</figcaption></figure><p id="ab3626fe-f75e-4d2b-a39f-7dc4d9340268" class="">
+</p><ul id="44c64a31-3e09-4fec-9e4c-5f6fda49fbf0" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="142e7ea8-ecfd-45f8-b320-332f5d114d04" class="">From a SQL perspective, this is similar to creating a trigger on an index (you can&#x27;t do this, but you kind of can if you generate indexes yourself with separate tables), creating a hierarchy of updates and thus eliminating some wasted effort. Furthermore, we&#x27;re creating conditional procedures that can be efficiently queried.</p><p id="3ee3fd95-54cf-434b-bcc8-a8786d72eb91" class="">It&#x27;s possible that we want to listen to changes for an entire precinct, not just a specific person in a precinct, and we can use this same <em>Precinct</em> and <em>Precinct Procedures</em> cabinets to do this if we generalize how this works. </p><p id="70981c25-7d9e-4224-8d2f-68f22c849539" class="">Suppose we want a procedure to run for updates to precinct 51 for any name. We can add a procedure sorted by the tuple [51] which comes before [51, A]. And when we lookup procedures, for [51, Colombo], we just need to make sure that we lookup not just [51, Colombo] but for all prefixes a well — in this case, [] and [51]. Note that [] means &quot;any change to this filing cabinet&quot;.</p></details></li></ul><p id="7781f3ef-37f3-422d-a39b-1cbe307b8968" class="">
+</p><p id="18f8fc6e-c845-4745-941c-98d75d280680" class="">Procedure lists and being able to efficiently lookup what procedures you need to do when updating a cabinet is a really powerful abstraction for automating information systems. Even more, this abstraction goes beyond the capability of existing database systems.</p><p id="0db6bd83-c914-4476-ba66-306ba16b995a" class="">
+</p><h2 id="787cc6e9-f0b6-4d0b-b050-323e68a743ff" class="">Audit Log</h2><p id="d1535670-5b43-4fcc-b71d-00f2742ea8ef" class="block-color-gray">Receipts, forms, requests to change information.</p><p id="0f26c172-2e64-425a-a9cf-2f499db0abed" class="">There comes a time when there are so many people and so much information changing that it becomes important to keep track of all the details around who is changing what and when.</p><p id="a947ec18-40b8-47b3-8e28-4a121d059f1d" class="">For example, maybe you open up the file for Officer Jones and it says he is a detective. And maybe you thought he was just a deputy, so you might be inclined to ask questions like &quot;when was he promoted?&quot;, &quot;who promoted him?&quot;, and &quot;how many promotions were there this year?&quot;. </p><p id="3ad94a26-6bd1-4ea8-a138-3584d305764e" class="">These questions are impossible to answer with our current setup and you can imagine that if you were administering a bank, you&#x27;d be asking these kinds of questions all the time about the movement of money between accounts. </p><p id="943e4bb8-6bce-420b-a663-dc4231918daa" class="">At a bank, every transfer between accounts is going to be documented with some sort of receipt that gets saved forever. And at our police department, changing any information might be documented with some kind of form. For example, when the police chief wants to promote Officer Jones to detective, he fills out a &quot;promotion form&quot; and delivers it to the filing clerk at the administration office.</p><p id="7e69d491-af6e-4dde-9808-fb3abf88813d" class="">The filing clerk might put this form in a filing cabinet for promotion forms sorted by rank and then date. Then we look up a set of procedures for this promotion, one of which is simply updating the rank of the officer in the <em>Badge #</em> cabinet.</p><p id="5e505555-2543-4017-89be-a90b8e6862b0" class="">
+</p><figure id="fb440fc7-7f25-4e25-a3cd-086716822984" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_30.png"><img style="width:2388px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_30.png"/></a><figcaption>The process of filing a promotion form, looking up procedures and updating the tank in the <em>Badge #</em> cabinet.</figcaption></figure><p id="1ae1bc10-70e9-448c-acb1-8bc1f11c896f" class="">
+</p><p id="bcc2271c-5e89-446c-b260-8ea8f89c30fa" class="">This process definitely requires more work than simply updating the officer&#x27;s rank in the <em>Badge #</em> cabinet, but it allows us to audit changes and answer a broader set of questions about how things have changed over time. For example, we can look at all promotions by rank over time from the <em>Promotion Forms</em> cabinet. And if we wanted to determine when an officer was promoted, we can create a separate cabinet that sorts these promotion forms by badge number, then date.</p><p id="2476f80c-0f89-48c2-aed9-6e95fbbf29f9" class="">
+</p><p id="5768cdda-39ca-447a-a64a-01ac458ec01b" class="">When keeping a historical list of changes for auditing purpose, it&#x27;s often important to build mechanisms to make sure that the information is not tampered with.</p><p id="1bd7a2db-998e-403e-b0b6-577beb25106b" class="">For example, suppose a bad actor wants to secretly add a record showing that Officer Jones was demoted on Dec 11 prior to being promoted on Dec 12 (perhaps to create a fraudulent scandal they can write about in the news to discredit the police chief before an election).</p><p id="c0b940ef-6af8-4b19-a49f-131f3193c0dd" class="">Signatures are the first line of defense here. If a signature is hard to copy, then it will be hard to create a fraudulent demotion form (note: we&#x27;re using the same promotion form for demotions as well). Another thing we can do is make note of the previous rank in the promotion form. That means if the bad actor wants to create this fraudulent demotion form, they will also need to fraudulently update the promotion form of Dec 12 to reference a previous demoted rank.</p><p id="71f2f7cc-540a-4754-aa62-d3e148d9c457" class="">
+</p><figure id="78ca5102-860f-4880-85a7-b86ba43eb4ab" class="image"><a href="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_31.png"><img style="width:624px" src="A%20More%20Human%20Approach%20To%20Databases%20172da2650bd44106a157fcddcca0f2e8/Filing_cabinets_31.png"/></a></figure><p id="d58732e0-d65e-41de-bbfc-94dfab3a6516" class="">
+</p><p id="eb5422db-d85e-4747-a2ac-cf80a4d9577a" class="">In the physical world, protecting against this kind of fraud is pretty difficult and inevitably requires some kind of trust in the system. But in the modern world with encryption and one-way hashing, we can create signatures for records that cannot be tampered with. This is exactly how the blockchain works to prevent fraudulent transactions in Bitcoin.</p><p id="e03aecf0-0cc4-47ee-b530-1f6fb2af3326" class="">
+</p><h1 id="8a0a55a1-9b0e-4dc0-96f2-a68f896a258e" class="">Beyond Filing Cabinets</h1><p id="67cebce3-296c-49dd-9a31-0ff7c51cd38b" class="block-color-gray">Permissions, asynchronous communication, consistency, conflicts.</p><p id="de29d4ea-832a-4852-8096-962407e7e117" class="">At this point, we&#x27;ve pretty much covered everything that is interesting about filing cabinets and how we can use them to manage large amounts of information with operational procedures. But there are a few more important systems needed for any realistic administration department.</p><p id="e4c8f4a2-b5c3-4b3c-a574-413c49881a1d" class="">The first is managing permission. Who has permission to promote an officer? Who has permission to read the complaints on a given officer? And who has permission to change the address of an officer?</p><p id="3ea81c61-2cf2-4b08-89af-2823c18a79c5" class="">There are plenty of ways to manage this and most organizations use some kind of permission hierarchy to keep things simple. I will leave answering these questions as an exercise for the reader, but if you are technically inclined, I would recommend reading about <a href="https://research.google/pubs/pub48190/">how Google solves this problem with their Zanzibar database</a>.</p><p id="007e5a16-f824-46ff-98c3-d8adc579195e" class="">
+</p><p id="5e51c04f-a566-4f9b-9862-6d2c1ab5ac93" class="">Another part of the system that needs to be carefully managed is how information gets mailed around to different departments. Sending something in the mail takes time which can cause all sorts of issues in a complex organization.</p><p id="625425c1-549a-433a-95ed-0441a0d538bf" class="">For example, maybe an officer gets promoted on Dec 12 and when the finance department sends out paychecks on Dec 13, they still haven&#x27;t received the promotion from the mail and so they send out a paycheck based on their previous rank.</p><p id="70aa70b2-6306-4584-866c-4d21ecaef59e" class="">Things get even more challenging when coordination is involved. For example, maybe the HR department determines that an officer has too many complaints and must be demoted. The HR department sends the demotion in the mail to the administration department as well as the finance department. At the same time, the chief thinks that the officer should be promoted and sends a promotion in the mail to the administration department as well as the finance department. </p><p id="6be14639-50e6-44fe-97f7-b371621847db" class="">Now what happens? Regardless of the outcome, the most important thing is that the administration, HR, and finance departments end up with the same result (also known as eventual consistency). For example, if the finance department decides to process the promotion and the administration department decides to process the demotion, then their records will differ and the officer will receive a larger paycheck than the administration department expects.</p><p id="f15bfe61-6d4d-4015-88b7-03c5da753716" class="">These are hard problems to solve and I will leave it to the reader to think about how to manage these kinds of coordination problems. But if you&#x27;re technically inclined, I&#x27;d recommend reading about <a href="https://github.com/automerge/automerge/blob/7ec347cc4bec9f8f9f513eb05788ddaec6f34c30/INTERNALS.md">how Automerge deals with these problems for peer-to-peer software</a>.</p><p id="62a39f4b-21a0-4f02-a996-c71123f1238e" class="">
+</p><h1 id="5b1aa59e-ef91-4a20-af54-367782283022" class="">Conclusion</h1><p id="21b54832-f8e9-4e9b-a534-1a880c29e056" class="">Databases can seem quite complicated, but every database fundamentally works just like a system of filing cabinets and stored procedures. Things start to get more complicated when we need to keep information up to date in many places and we want to have an audit trail of all changes to a database. But this complexity is <em>essential</em> to solving the problems we addressed.</p><p id="894bbee8-5553-4cf0-b1cd-1eaf8e5811ed" class="">When it comes to the future of computer literacy, I know that not everyone is going to be a ninja programmer, but understanding the details of how to structure systems of filing cabinets will allow ordinary people to get the most out of computers.</p><p id="1b47cef9-cbed-4461-a4aa-dfcd7f9f6783" class="">
+</p><ul id="fb18a1a3-d0dc-4c28-a69d-943933dbf7a0" class="toggle"><li><details open=""><summary>🤖 Technical Details</summary><p id="91596311-77cb-4128-b9eb-d114c1f8decd" class="">From a technical perspective, there are a few important things we should consider from this analogy.</p><p id="a3c67662-e9a3-4cae-8b78-d1da2ac584cb" class="">For one, there are no database systems I am aware of that efficiently query and evaluate user-generated procedures. This kind of flexibility is essential to build a scalable end-user database application.</p><p id="2703afb4-a5e7-4839-a93f-05e11a6f3e98" class="">Another thing to consider is how information is sharded. In this analogy &quot;sending something in the mail&quot; is effectively saying that there is a boundary between shards. That is, the HR department and the Finance department are in different physical locations. </p><p id="b3e5d8ca-f1da-43cd-830c-67872efe5c4f" class="">When we&#x27;re building applications for our users, where do all these filing cabinets live? One way to do it is if everyone has their own filing cabinets at home (and some people do). Another way to do it is every service you use keeps records of your information and you have to ask them for it whenever you want to see it. This is currently how most things work in the world: your health records live at your doctor&#x27;s office, the blueprints for your house live at the building department, and your emails live in a virtual filing cabinet in a Google data center. </p><p id="c03a5f97-f070-4aa1-85a3-2725406ac700" class="">This way of doing things is actually quite convenient for many people — they don&#x27;t need to keep track of their own records at all! On the other hand, it means people are less empowered to build their own filing cabinet systems to manage and automate their life. It also means that their information is less private.</p></details></li></ul><p id="59d43156-fe55-47ea-8606-0d1fde0b05b9" class="">
+</p><p id="069c092f-8c5a-4fcb-80d3-35bcef606de7" class="">If you are inspired by these ideas, want to build an embedded database, or just want to toss around some related ideas, <a href="mailto:ccorcos@gmail.com">please don&#x27;t hesitate to reach out</a>. Thanks for reading 🙏</p><p id="1ca212c9-529b-4a20-83a6-c539dfde172f" class="">
+</p><p id="5e2a7a7f-3a4c-491f-90b2-b271ce6ac5a8" class="">
+</p><hr id="2b3f10f5-051e-4423-915d-568d5445e7c7"/><p id="cc224f85-b51a-4042-b205-3338ca70f642" class="block-color-gray">Published January 12, 2020 by <a href="https://www.chetcorcos.com/">Chet Corcos</a></p><p id="7919c991-5a13-45e7-a2d1-5cd283376258" class="block-color-gray">Thanks to Haris Butt and Max Einhorn for reading drafts of this.</p></div></article></body></html>

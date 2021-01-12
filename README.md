@@ -1,4 +1,4 @@
-# Notion to Static Website
+# [Filing Cabinets Article](https://ccorcos.github.io/filing-cabinets/)
 
 - Export to HTML
 - Drag the export into this repo
