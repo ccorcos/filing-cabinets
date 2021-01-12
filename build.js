@@ -38,7 +38,7 @@ htmlContents = htmlContents.replace(
 const twitterMeta = `
 <meta name="twitter:title" content="A More Human Approach To Databases ">
 <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
-<meta name="twitter:image" content="assets/Filing_cabinets_4.png">
+<meta name="twitter:image" content="assets/Filing_cabinets_9.png">
 <meta name="twitter:card" content="summary_large_image"></meta>
 `.trim();
 
